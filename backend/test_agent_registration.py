@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Import the agents module
-from insurance_bot_agents import mcp_agents
+from msme_chatbot_agents import mcp_agents
 import inspect
 
 print("=" * 60)

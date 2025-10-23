@@ -1,7 +1,7 @@
 """
-Insurance Bot Agents Module
+MSME Chatbot Agents Module
 
-This module contains all agent classes and tools for the insurance bot application.
+This module contains all agent classes and tools for the MSME chatbot application.
 """
 
 from .mcp_agents import (

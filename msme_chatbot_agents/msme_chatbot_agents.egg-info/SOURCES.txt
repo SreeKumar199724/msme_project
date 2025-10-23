@@ -17,8 +17,8 @@ requirements.txt
 ./mcp_agents.py
 ./remote_mcp_server_execution.txt
 ./requirements.txt
-insurance_bot_agents.egg-info/PKG-INFO
-insurance_bot_agents.egg-info/SOURCES.txt
-insurance_bot_agents.egg-info/dependency_links.txt
-insurance_bot_agents.egg-info/requires.txt
-insurance_bot_agents.egg-info/top_level.txt
+msme_chatbot_agents.egg-info/PKG-INFO
+msme_chatbot_agents.egg-info/SOURCES.txt
+msme_chatbot_agents.egg-info/dependency_links.txt
+msme_chatbot_agents.egg-info/requires.txt
+msme_chatbot_agents.egg-info/top_level.txt

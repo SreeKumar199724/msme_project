@@ -30,16 +30,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from contextlib import asynccontextmanager
 
-# Add parent directory to path to import insurance_bot_agents
+# Add parent directory to path to import msme_chatbot_agents
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 #import the custom created agents
-# from insurance_bot_agents import mcp_agents
-# from insurance_bot_agents import mcp_agent_tools
-import insurance_bot_agents
-from insurance_bot_agents.mcp_agents import *
-# from insurance_bot_agents import ProcessPlannerAgent, InsurancePolicyAgent, InsureSQLCoderAgent, ProcessFullPlan, VisualizationAgent
-# from insurance_bot_agents import mcp_agents
+# from msme_chatbot_agents import mcp_agents
+# from msme_chatbot_agents import mcp_agent_tools
+import msme_chatbot_agents
+from msme_chatbot_agents.mcp_agents import *
+# from msme_chatbot_agents import ProcessPlannerAgent, InsurancePolicyAgent, InsureSQLCoderAgent, ProcessFullPlan, VisualizationAgent
+# from msme_chatbot_agents import mcp_agents
 
 
 
@@ -109,7 +109,7 @@ class WorkflowBuilder:
         agent_names_list = []
         
 
-        module_name = "insurance_bot_agents.mcp_agents"
+        module_name = "msme_chatbot_agents.mcp_agents"
         try:
             module = importlib.import_module(module_name)
         except ImportError as e:
@@ -318,7 +318,7 @@ def recognize_from_microphone():
 
 
 agent_list = []
-for name, obj in inspect.getmembers(insurance_bot_agents.mcp_agents):
+for name, obj in inspect.getmembers(msme_chatbot_agents.mcp_agents):
     if inspect.isclass(obj) and name.endswith('Agent'):
         agent_list.append(name)
 

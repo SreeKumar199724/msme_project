@@ -1,11 +1,11 @@
 Metadata-Version: 2.4
-Name: insurance-bot-agents
+Name: msme-chatbot-agents
 Version: 1.0.0
-Summary: Insurance Bot Agents - A collection of AI agents for insurance domain tasks
+Summary: MSME Chatbot Agents - A collection of AI agents for MSME domain tasks
 Author-email: Your Name <your.email@example.com>
-Project-URL: Homepage, https://github.com/yourusername/insurance-bot-agents
-Project-URL: Repository, https://github.com/yourusername/insurance-bot-agents
-Keywords: insurance,ai-agents,langchain,langgraph,mcp
+Project-URL: Homepage, https://github.com/yourusername/msme-chatbot-agents
+Project-URL: Repository, https://github.com/yourusername/msme-chatbot-agents
+Keywords: msme,chatbot,ai-agents,langchain,langgraph,mcp
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
 Classifier: Programming Language :: Python :: 3

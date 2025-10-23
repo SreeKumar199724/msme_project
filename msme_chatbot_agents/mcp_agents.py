@@ -22,10 +22,10 @@ from pathlib import Path
 
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
-# from insurance_bot_agents.agent_tools import * #without MCP
-# from insurance_bot_agents.mcp_agent_tools import generate_chart_response
-# from .mcp_agent_tools import SQL_query_exec, send_email,semantic_search_tool, mcp 
-from insurance_bot_agents.mcp_agent_tools import SQL_query_exec, send_email,semantic_search_tool, mcp 
+# from msme_chatbot_agents.agent_tools import * #without MCP
+# from msme_chatbot_agents.mcp_agent_tools import generate_chart_response
+# from .mcp_agent_tools import SQL_query_exec, send_email,semantic_search_tool, mcp
+from msme_chatbot_agents.mcp_agent_tools import SQL_query_exec, send_email,semantic_search_tool, mcp 
 ### Remote MCP Server with http streaming ###
 # async def chart_tools():
 #     client = MultiServerMCPClient(
