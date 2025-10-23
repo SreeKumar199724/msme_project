@@ -1,0 +1,43 @@
+"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LangGraph Stream</title>
+</head>
+<body>
+    <h1>LangGraph Stream</h1>
+    <form action="/stream_agent" method="post">
+        <label for="agent_name">Agent Name:</label><br>
+        <input type="text" id="agent_names" name="agent_names"><br><br>
+        <label for="user_input">User Input:</label><br>
+        <input type="text" id="user_input" name="user_input"><br><br>
+        <input type="submit" value="Stream">
+    </form>
+    <div id="output"></div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/stream_agent', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let result = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) {
+                    break;
+                }
+                result += decoder.decode(value);
+                document.getElementById('output').innerHTML = result;
+            }
+        });
+    </script>
+</body>
+</html>
+"""

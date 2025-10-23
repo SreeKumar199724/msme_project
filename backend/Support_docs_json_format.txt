@@ -1,0 +1,49 @@
+{
+  "_id": "KriyaSQLCoderAgent",
+  "table_name": "voter_analysis.kriya_members",
+  "table_structure": {
+    "sno": "Bigint: Serial number of the record.",
+    "constituency_name": "text: Constituency name.",
+    "mandal_name": "text: Mandal name.",
+    "dob": "date: Date of birth (YYYY-MM-DD).",
+    "gender": "text: Gender.",
+    "jsp_id": "text: Unique member ID.",
+    "name": "text: Member name.",
+    "mobile": "text: Mobile number.",
+    "nominee_name": "text: Nominee name.",
+    "village_or_ward": "text: Village or ward address.",
+    "volunteer_mobile": "text: Volunteer mobile number.",
+    "volunteername": "text: Volunteer name."
+  }
+},
+
+
+{
+  "_id": "VoterSQLCoderAgent",
+  "table_name": "voter_analysis.voter_details",
+  "table_structure": {
+    "serialno": "Bigint: Record serial number.",
+    "age": "integer: Voter age.",
+    "constituency_id": "integer: Constituency ID.",
+    "createdon": "timestamp: Record creation timestamp.",
+    "door_no": "text: Door number.",
+    "gender": "text: Voter gender.",
+    "name": "text: Voter name.",
+    "page_no": "integer: Voter page number.",
+    "polling_station_name": "text: Polling station name.",
+    "polling_station_no": "integer: Polling station number.",
+    "relation_type": "text: Relationship type.",
+    "relative_name": "text: Relative's name.",
+    "sno": "integer: Secondary serial number (can be ignored).",
+    "state": "integer: State ID.",
+    "status": "text: Voter status.",
+    "voter_id": "text: Voter ID.",
+    "voters2024_seq_id": "bigint: 2024 voter sequence ID."
+  }
+},
+
+
+{
+  "_id": "EmailDraftAgent",
+  "email_template": "You are an email drafting assistant. I will provide you with the recipient's email address, the email subject, and the email body. \n\t\t\t\t\t\t\tYour task is to construct a well-formatted email suitable for sharing the output from the previous agents.\n\t\t\t\t\t\t\t**receiver_email** is the receipient email id that needs to be taken from the user\n\t\t\t\t\t\t\tGenerate the email in the following structured format and ask the user for approval to send the email:\n\t\t\t\t\t\t\t***\n\t\t\t\t\t\t\t Subject (DO NOT SHOW THIS HEADER IN THE EMAIL): [Concise and informative subject line related to the report title, incorporating urgency or key findings if appropriate]\n\n\t\t\t\t\t\t\t Body (DO NOT SHOW THIS HEADER IN THE EMAIL):\n\n\t\t\t\t\t\t\t Dear [Recipient Name or Team, if known, otherwise use a generic greeting],\n\n\t\t\t\t\t\t\t Introduction (DO NOT SHOW THIS HEADER IN THE EMAIL):\n\t\t\t\t\t\t\t [Briefly introduce the purpose of the email and the attached report. Refer to the report title and summary.]\n\n\t\t\t\t\t\t\t Report Summary (If Applicable) (DO NOT SHOW THIS HEADER IN THE EMAIL):\n\t\t\t\t\t\t\t [Reiterate the key findings or purpose of the report, using the 'Report Summary' input.]\n\n\t\t\t\t\t\t\t Report Content (DO NOT SHOW THIS HEADER IN THE EMAIL):\n\t\t\t\t\t\t\t [Include the 'Report Content' input directly. Format the content for readability, using paragraphs, bullet points, numbered lists, or tables as appropriate. Ensure clarity and logical flow. If the content is very long, consider providing a brief overview and stating that the full report is attached.]\n\n\t\t\t\t\t\t\t Actionable Items/Next Steps (If Applicable) (DO NOT SHOW THIS HEADER IN THE EMAIL):\n\t\t\t\t\t\t\t [If the 'Specific Instructions' include requests for action, clearly outline them. Include deadlines or specific tasks.]\n\n\t\t\t\t\t\t\t Closing (DO NOT SHOW THIS HEADER IN THE EMAIL):\n\t\t\t\t\t\t\t [Provide a polite closing statement. Offer to answer questions or provide further information.]***"
+}

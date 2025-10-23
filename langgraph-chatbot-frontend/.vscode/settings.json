@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    "ritwickdey.liveserver",
+    "ms-vscode.vscode-json",
+    "bradlc.vscode-tailwindcss"
+  ],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "html.format.indentInnerHtml": true,
+  "css.validate": true,
+  "javascript.validate.enable": true,
+  "emmet.includeLanguages": {
+    "javascript": "html"
+  },
+  "liveServer.settings.port": 3000,
+  "liveServer.settings.root": "/",
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.ts"
+  ]
+}

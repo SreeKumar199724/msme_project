@@ -1,0 +1,14 @@
+1. install the package globally
+npm install -g @antv/mcp-server-chart
+
+2. Run the server with preferred transport 
+# For SSE transport (default endpoint: /sse)
+mcp-server-chart --transport sse
+
+# For Streamable transport with custom endpoint
+mcp-server-chart --transport streamable
+
+3. Then you can access the server at:
+
+SSE transport: http://localhost:1122/sse
+Streamable transport: http://localhost:1122/mcp

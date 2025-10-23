@@ -1,0 +1,5 @@
+run this in the terminal 
+& "C:\Program Files\nodejs\npm.cmd" init -y
+& "C:\Program Files\nodejs\npm.cmd" install -g live-server http-server
+
+uv run python -m http.server 3000    Run this for front end
