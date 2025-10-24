@@ -16,6 +16,10 @@ classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
+    "fastapi :: 0.115.0",
+    "uvicorn ::0.30.0",
+    "gunicorn :: 22.0.0"
+
 ]
 
 dependencies = [
