@@ -165,7 +165,7 @@ def semantic_search_tool(query: str) ->  str:
     
     This function connects to a Qdrant vector store, converts the input query into
     an embedding using OpenAI's text-embedding-3-large model, and retrieves the
-    most similar document from the 'semantic_search_policy' collection.
+    most similar document from the 'msme_guidelines_docs' collection.
     
     Args:
         query (str): The search query string to find similar documents for.
@@ -184,11 +184,7 @@ def semantic_search_tool(query: str) ->  str:
         - QDRANT_API_KEY: API key for Qdrant authentication
         - OPENAI_API_KEY: API key for OpenAI embeddings
         
-    Example:
-        >>> result = semantic_search_tool("What are the surrender charges?")
-        >>> print(result)
-        "Surrender charges apply when premiums are withdrawn..."
-    """
+   """
     try:
         # Load environment variables
         load_dotenv()
@@ -197,14 +193,18 @@ def semantic_search_tool(query: str) ->  str:
         # Validate required environment variables
         qdrant_url = os.getenv("QDRANT_URL")
         qdrant_api_key = os.getenv("QDRANT_API_KEY")
+        embedding_model_name = os.getenv("EMBEDDING_MODEL_NAME")
+        vector_store_collection = os.getenv("VECTOR_STORE_COLLECTION")
         
         if not qdrant_url or not qdrant_api_key:
             raise ValueError("QDRANT_URL and QDRANT_API_KEY must be set in environment variables")
         OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
         if not OPENAI_API_KEY:
             raise ValueError("OPENAI_API_KEY must be set in environment variables")
+        if not embedding_model_name:
+            raise ValueError("EMBEDDING_MODEL_NAME must be set in environment variables")
         # Initialize OpenAI embeddings
-        embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
+        embeddings = OpenAIEmbeddings(model=embedding_model_name)
         # embeddings = AzureOpenAIEmbeddings(model="text-embedding-3-large")
         
         # Connect to Qdrant
@@ -212,7 +212,8 @@ def semantic_search_tool(query: str) ->  str:
         client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key, prefer_grpc=True)
         
         # Initialize vector store
-        collection_name = "semantic_search_policy"
+        
+        collection_name = vector_store_collection
         # logger.info(f"Using collection: {collection_name}")
         vector_store = QdrantVectorStore(
             client=client,

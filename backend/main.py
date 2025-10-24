@@ -30,16 +30,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from contextlib import asynccontextmanager
 
-# Add parent directory to path to import msme_chatbot_agents
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-#import the custom created agents
-# from msme_chatbot_agents import mcp_agents
-# from msme_chatbot_agents import mcp_agent_tools
+# Import the custom created agents (installed as editable package)
 import msme_chatbot_agents
 from msme_chatbot_agents.mcp_agents import *
-# from msme_chatbot_agents import ProcessPlannerAgent, InsurancePolicyAgent, InsureSQLCoderAgent, ProcessFullPlan, VisualizationAgent
-# from msme_chatbot_agents import mcp_agents
 
 
 
@@ -239,11 +232,11 @@ class WorkflowBuilder:
      
 
         try:
-            default_agent = "ProcessPlanner" if "ProcessPlanner" in agent_names_list else agent_names_list[0]
+            default_agent = "TranslatorAgent" if "TranslatorAgent" in agent_names_list else agent_names_list[0]
             logger.info(f"Using '{default_agent}' as default active agent.")
 
             graph_builder = create_swarm(
-                agents=agents_needed, default_active_agent="ProcessPlanner"
+                agents=agents_needed, default_active_agent="TranslatorAgent"
             )
 
             logger.info("LangGraph swarm flow created")
