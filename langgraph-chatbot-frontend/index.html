@@ -535,9 +535,19 @@
                 this.startNewSession();
             }
 
-            // Function to convert URLs in text to clickable links
+            // Function to convert markdown links and URLs in text to clickable links
             convertUrlsToLinks(text) {
-                // Regular expression to match URLs
+                // First, convert markdown-style links [text](url) to HTML links
+                text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+                    // Add protocol if missing
+                    let finalUrl = url;
+                    if (!finalUrl.match(/^https?:\/\//)) {
+                        finalUrl = 'http://' + finalUrl;
+                    }
+                    return `<a href="${finalUrl}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+                });
+
+                // Then, convert remaining plain URLs to clickable links
                 const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9-]+\.[a-zA-Z]{2,}[^\s]*)/g;
 
                 return text.replace(urlRegex, (match) => {

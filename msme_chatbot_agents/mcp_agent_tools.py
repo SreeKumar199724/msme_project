@@ -223,11 +223,11 @@ def semantic_search_tool(query: str) ->  str:
         
         # Perform similarity search
         results = vector_store.similarity_search(query, k=1)
-        
+        result = f"{results[0].page_content} Document Name: {results[0].metadata['pdf_name']}"
        
         # Return the top result content
         if results:
-            return results[0].page_content
+            return result
         else:
             return ""
             
