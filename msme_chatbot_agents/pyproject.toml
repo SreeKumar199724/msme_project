@@ -43,7 +43,7 @@ dependencies = [
     "langsmith>=0.4.5,<0.4.9",
     "fastapi :: 0.115.0",
     "uvicorn ::0.30.0",
-    "gunicorn :: 22.0.0"
+    "gunicorn :: 22.0.0",
 
     # OpenAI & Anthropic
     "openai>=1.95.1,<1.98",
