@@ -448,6 +448,28 @@
         .chat-messages::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #41BAFF 0%, #06FFAA 100%);
         }
+
+        /* Link styling in messages */
+        .message-content a {
+            color: #1976d2;
+            text-decoration: underline;
+            word-break: break-all;
+            cursor: pointer;
+        }
+
+        .message-content a:hover {
+            color: #0d47a1;
+            text-decoration: underline;
+        }
+
+        .message.user .message-content a {
+            color: #001F37;
+            font-weight: 600;
+        }
+
+        .message.user .message-content a:hover {
+            color: #000a12;
+        }
     </style>
 </head>
 <body>
@@ -511,6 +533,21 @@
 
                 this.initializeEventListeners();
                 this.startNewSession();
+            }
+
+            // Function to convert URLs in text to clickable links
+            convertUrlsToLinks(text) {
+                // Regular expression to match URLs
+                const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9-]+\.[a-zA-Z]{2,}[^\s]*)/g;
+
+                return text.replace(urlRegex, (match) => {
+                    let url = match;
+                    // Add protocol if missing
+                    if (!url.match(/^https?:\/\//)) {
+                        url = 'http://' + url;
+                    }
+                    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
+                });
             }
 
             async startVoiceRecognition() {
@@ -678,7 +715,8 @@
                 // Handle complex assistant message (with graph) vs simple string
                 if (type === 'assistant' && typeof content === 'object') {
                     const textNode = document.createElement('p');
-                    const processedHtml = content.assistant_response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    let processedHtml = content.assistant_response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    processedHtml = this.convertUrlsToLinks(processedHtml);
                     textNode.innerHTML = processedHtml;
                     messageContent.appendChild(textNode);
 
@@ -725,7 +763,9 @@
                         // --- END OF MODIFICATIONS ---
                     }
                 } else {
-                    messageContent.textContent = content; // User message or simple assistant message
+                    // User message or simple assistant message - convert URLs to links
+                    const processedContent = this.convertUrlsToLinks(content);
+                    messageContent.innerHTML = processedContent;
                 }
                 
                 if (type === 'user') {
