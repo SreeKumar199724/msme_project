@@ -7,10 +7,9 @@ services:
     region: oregon
     autoDeploy: true
 
-    # Your Dockerfile is in backend/, but it copies folders from the repo root
     dockerfilePath: ./backend/Dockerfile
-    dockerContext: .              # IMPORTANT: build context must be repo root (.)
-    # If you DID NOT edit the Dockerfile CMD to use ${PORT}, uncomment the line below:
+    dockerContext: .
+    # If you DID NOT edit Dockerfile CMD to use ${PORT}, uncomment:
     # dockerCommand: bash -lc "uvicorn main:app --host 0.0.0.0 --port ${PORT}"
 
     healthCheckPath: /healthz
@@ -32,17 +31,14 @@ services:
         sync: false
       - key: SUPPORT_DOC_COLLECTION
         sync: false
-      # Optional CORS allowlist if your backend checks it:
-      # - key: CORS_ALLOW_ORIGINS
-      #   value: https://msme-frontend.onrender.com
 
   # --- Frontend: Static Site ---
-  - type: static
+  - type: web
     name: msme-frontend
+    runtime: static
     staticPublishPath: langgraph-chatbot-frontend
-    buildCommand: ""               # static site — no build step
+    buildCommand: ""     # no build step for pure HTML/JS/CSS
     routes:
-      # Proxy any request to /api/* to the backend service
       - type: rewrite
         source: /api/*
         destination: https://msme-api.onrender.com/:splat
