@@ -13,6 +13,9 @@ import inspect
 import logging
 from IPython.display import Image, display
 from PIL import Image as PILImage
+from fastapi import FastAPI
+app = FastAPI()
+# Your routes here
 
 from langgraph.graph import StateGraph, START, END, MessagesState, add_messages
 from langchain_openai import ChatOpenAI
@@ -389,7 +392,9 @@ app = FastAPI(
     description="API endpoint for interacting with the LangGraph Agent Swarm",
     lifespan=lifespan
 )
-
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
 
 # CORS (Cross-Origin Resource Sharing) Middleware
 # Allows requests from your Streamlit frontend (adjust origins if needed)

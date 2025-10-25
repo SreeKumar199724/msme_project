@@ -1,0 +1,48 @@
+services:
+  # --- Backend: FastAPI (Docker) ---
+  - type: web
+    name: msme-api
+    runtime: docker
+    plan: free
+    region: oregon
+    autoDeploy: true
+
+    # Your Dockerfile is in backend/, but it copies folders from the repo root
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .              # IMPORTANT: build context must be repo root (.)
+    # If you DID NOT edit the Dockerfile CMD to use ${PORT}, uncomment the line below:
+    # dockerCommand: bash -lc "uvicorn main:app --host 0.0.0.0 --port ${PORT}"
+
+    healthCheckPath: /healthz
+
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: ASYNC_MONGODB_URI
+        sync: false
+      - key: SPEECH_KEY
+        sync: false
+      - key: SPEECH_REGION
+        sync: false
+      - key: SUPPORT_DOC_DB_NAME
+        sync: false
+      - key: SUPPORT_DOC_COLLECTION
+        sync: false
+      # Optional CORS allowlist if your backend checks it:
+      # - key: CORS_ALLOW_ORIGINS
+      #   value: https://msme-frontend.onrender.com
+
+  # --- Frontend: Static Site ---
+  - type: static
+    name: msme-frontend
+    staticPublishPath: langgraph-chatbot-frontend
+    buildCommand: ""               # static site — no build step
+    routes:
+      # Proxy any request to /api/* to the backend service
+      - type: rewrite
+        source: /api/*
+        destination: https://msme-api.onrender.com/:splat

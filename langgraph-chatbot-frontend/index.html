@@ -519,8 +519,8 @@
     <script>
         class ChatBot {
             constructor() {
-                this.apiUrl = 'http://localhost:8503/chat';
-                this.voiceApiUrl = 'http://localhost:8503/voice-input';
+                this.apiUrl = '/api/chat';
+                this.voiceApiUrl = '/api/voice-input';
                 this.chatMessages = document.getElementById('chatMessages');
                 this.chatInput = document.getElementById('chatInput');
                 this.sendButton = document.getElementById('sendButton');
